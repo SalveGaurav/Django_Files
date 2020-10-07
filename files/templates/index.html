@@ -1,0 +1,43 @@
+{% extends 'Basic.html' %}
+{% block title %}Index{% endblock %}
+{% load static %}
+{% block head_css_site %}
+{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+    {% endblock head_css_site %}
+    
+{% block body %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="{% static 'index.js' %}"></script>
+<!--function a(){
+const Ipfiles=document.getElementById("files");
+console.log(Ipfiles.files)
+const button=document.getElementById("Send");
+
+    const xhr=new XMLHttpRequest();
+    const formdata=new FormData();
+    
+    for(const file of Ipfiles.files){
+        console.log(file)
+        formdata.append("myfiles",file)
+    }
+    console.log(formdata);
+}
+   */ -->  
+
+
+
+<div class="container">
+    <div class="leftDiv">
+<form action="#" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="uploaded_file" id="files" multiple>
+    <input type="button" value="Send" id="Send">
+</form>
+</div>
+<div class="rightDiv nopadding">
+
+</div>
+</div>
+{% endblock %}
