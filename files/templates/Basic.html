@@ -1,0 +1,23 @@
+<html>
+    <title>{% block title %}{% endblock %}</title>
+{% load static %}
+{% block css %}
+{% block head_css_site %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic.css' %}">
+    {% endblock head_css_site %}
+  {% endblock css %}
+    <body class="nopadding">
+        <div class="container nopadding">
+            <header>
+                <img src="{% static 'logo.png' %}"  alt="#">
+                <p>FILES</p>
+            </header>
+
+            {% block body %}{% endblock %}
+
+            <footer>
+                <p>©PRATHAM  EDUCATION  FOUNDATION</p>
+            </footer>
+        </div>
+    </body>
+</html>
