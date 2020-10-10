@@ -7,15 +7,17 @@ from django.core.files.storage import FileSystemStorage
 def index(request):
     return render(request,"index.html")
 def upload(request):
-    file=request.FILES.getlist('uploaded_file')
+    file=request.FILES.getlist('file')
     print(file)
     for f in file:
         if " " in f:
             f=changename(file)
         obj=Datas(file=f)
         obj.save()
+    files=Datas.objects.all()
+    print(files)
 
-    return HttpResponse("done")
+    return HttpResponse(files)
 
 def changename(file):
     oldname=file.name
