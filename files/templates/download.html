@@ -1,0 +1,9 @@
+{% extends 'Basic.html' %}
+{% block title %}Index{% endblock %}
+{% load static %}
+{% block body %}
+{% for i in files %}
+<a href={{i.file.url}} download>{{i.file}}</a>
+{% endfor %}
+
+{% endblock %}
