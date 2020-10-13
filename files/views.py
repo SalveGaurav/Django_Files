@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Datas
 from django.core.files.storage import FileSystemStorage
+import pickle
+import json
 
 def index(request):
     return render(request,"index.html")
@@ -14,10 +16,8 @@ def upload(request):
             f=changename(file)
         obj=Datas(file=f)
         obj.save()
-    files=Datas.objects.all()
-    print(files)
-
-    return HttpResponse(files)
+    files=list(Datas.objects.all().values('file'))
+    return HttpResponse(json.dumps(files))
 
 def changename(file):
     oldname=file.name

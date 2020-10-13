@@ -37,18 +37,27 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success:  function(data){
-              
-                 alert("sucessful")
-                 for(var i in data){
+                alert(data);
+                console.log(length.data)
+                console.log(data)
+                data = JSON.parse(data);
+                
+                
+                for(var i in data){
+                    console.log(i)
+                    var newLine=document.createElement('br');
                     var aTag = document.createElement('a');
-                    aTag.setAttribute('href',"{{i.file.url}}");
-                    aTag.innerText = i.url;
+                    var loc="/media/"+data[i]['file']
+                    aTag.setAttribute('href',loc);
+                    aTag.setAttribute('download',"download")
+                    var fileName=data[i]['file'];
+                    var fileName=fileName.split("/")
+                    aTag.innerText = fileName[1];
                     $("#right").append(aTag);
-                 }
-                     
-                 
-               
-        }
+                    $("#right").append(newLine);
+                }         
+                               
+       }
         });
     });
     });
